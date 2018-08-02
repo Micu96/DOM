@@ -1,5 +1,7 @@
-package com.akond.RankFilm.DB.DOM;
+package com.akond.RankFilm.DB.DOM.Logic;
 
+import com.akond.RankFilm.DB.DOM.DB.AcademyAward;
+import com.akond.RankFilm.DB.DOM.DB.BoxOffice;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

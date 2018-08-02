@@ -1,4 +1,4 @@
-package com.akond.RankFilm.DB.DOM;
+package com.akond.RankFilm.DB.DOM.Repositories;
 
 import java.io.Serializable;
 import java.sql.*;

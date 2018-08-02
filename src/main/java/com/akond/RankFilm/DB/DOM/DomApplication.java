@@ -1,6 +1,6 @@
 package com.akond.RankFilm.DB.DOM;
 
-import org.springframework.boot.SpringApplication;
+import com.akond.RankFilm.DB.DOM.Logic.Builder;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.Connection;
@@ -18,7 +18,6 @@ public class DomApplication {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/?user=root", "root", "Kolega66.");
 			connection.setAutoCommit(false);
-			Builder.buildOscarsTable(connection);
 			Builder.buildBoxOfficeTable(connection);
 
 		}

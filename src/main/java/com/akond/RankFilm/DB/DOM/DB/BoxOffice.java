@@ -1,4 +1,4 @@
-package com.akond.RankFilm.DB.DOM;
+package com.akond.RankFilm.DB.DOM.DB;
 
 public class BoxOffice {
 

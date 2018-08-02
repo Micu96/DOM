@@ -1,4 +1,7 @@
-package com.akond.RankFilm.DB.DOM;
+package com.akond.RankFilm.DB.DOM.Repositories;
+
+import com.akond.RankFilm.DB.DOM.DB.AcademyAward;
+import com.akond.RankFilm.DB.DOM.DB.BoxOffice;
 
 import java.sql.*;
 import java.util.Iterator;
@@ -22,22 +25,28 @@ public class SqlUtils {
     }
     public static void insertIntoOscarsTable(Connection connection, List<AcademyAward> academyAwardList) throws SQLException {
 
-        String sqlInsert = "INSERT INTO `database`.`Oscars` (?,?,?,?,?);";
+        String sqlInsert = "INSERT INTO `database`.`Oscars` VALUES (?,?,?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert);
 
         Iterator<AcademyAward> iterator = academyAwardList.iterator();
-        while(iterator.hasNext()){
-            AcademyAward academyAward = iterator.next();
+        while(iterator.hasNext()) {
+            try {
+                AcademyAward academyAward = iterator.next();
 
-            preparedStatement.setString(1,academyAward.getImdb_id());
-            preparedStatement.setString(2,academyAward.getTitle());
-            preparedStatement.setString(3,academyAward.getWinning_year());
-            preparedStatement.setString(4,academyAward.getNomination());
-            preparedStatement.setString(5,academyAward.getWin());
+                preparedStatement.setString(1, academyAward.getImdb_id());
+                preparedStatement.setString(2, academyAward.getTitle());
+                preparedStatement.setString(3, academyAward.getWinning_year());
+                preparedStatement.setString(4, academyAward.getNomination());
+                preparedStatement.setString(5, academyAward.getWin());
+                preparedStatement.addBatch();
 
-            preparedStatement.addBatch();
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
         }
         preparedStatement.executeBatch();
+
         System.out.println("Executed!");
 
     }
@@ -73,8 +82,8 @@ public class SqlUtils {
                         preparedStatement.setString(1, boxOffice.getImdbId());
                         preparedStatement.setObject(2, boxOffice.getBudget());
                         preparedStatement.setObject(3, boxOffice.getGross());
-                        preparedStatement.setString(4,boxOffice.getBudgetCurrency());
-                        preparedStatement.setString(5,boxOffice.getGrossCurrency());
+                        preparedStatement.setString(4, boxOffice.getBudgetCurrency());
+                        preparedStatement.setString(5, boxOffice.getGrossCurrency());
 
                         preparedStatement.addBatch();
 
